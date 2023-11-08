@@ -57,6 +57,9 @@
 /* External variables --------------------------------------------------------*/
 extern ADC_HandleTypeDef hadc1;
 extern CAN_HandleTypeDef hcan1;
+extern TIM_HandleTypeDef htim3;
+extern uint32_t ADC_VAL[8];
+extern uint8_t BUTTON_VAL[8];
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -239,6 +242,21 @@ void CAN1_RX1_IRQHandler(void)
   /* USER CODE BEGIN CAN1_RX1_IRQn 1 */
 
   /* USER CODE END CAN1_RX1_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM3 global interrupt.
+  */
+void TIM3_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM3_IRQn 0 */
+
+  /* USER CODE END TIM3_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim3);
+  /* USER CODE BEGIN TIM3_IRQn 1 */
+  //1. Create CAN message with joystick & button values
+  //2. Send it via hcan1
+  /* USER CODE END TIM3_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
